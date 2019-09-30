@@ -1,0 +1,59 @@
+import Dependencias.*
+import Rodados.*
+test "testX" {
+	var deportes = new Dependencia()
+	var cultura = new Dependencia()
+	deportes.empleados(45)
+	cultura.empleados(31)
+	var cachito = new ChevroletCorsa()
+	cachito.color(rojo)
+
+
+	var corsaAzul = new ChevroletCorsa()
+	corsaAzul.color(azul)
+	var corsaVerde = new ChevroletCorsa()
+	corsaVerde.color(verde)
+	var kwid = new RenaultKwid()
+	kwid.tieneTanque(true)
+	var autoEspecial = new AutosEspeciales()
+	autoEspecial.capacidad(5)
+	autoEspecial.velocidadMaxima(160) 
+	autoEspecial.peso(1200) 
+	autoEspecial.color(beige)
+	
+	deportes.agregarAFlota(cachito)
+	deportes.agregarAFlota(corsaAzul)
+	deportes.agregarAFlota(corsaVerde)
+	deportes.agregarAFlota(kwid)
+	deportes.agregarAFlota(autoEspecial)
+	
+	assert.equals(6450, deportes.pesoTotalFlota())
+	assert.that(deportes.estaBienEquipada())
+	assert.equals(7, deportes.capacidadTotalEnColor(azul))
+	assert.equals(beige, deportes.colorDelRodadoMasRapido())
+	assert.equals(25, deportes.capacidadFaltante())
+	assert.that(deportes.esGrande())
+	
+
+	var kwid1 = new RenaultKwid()
+	kwid1.tieneTanque(true)
+	var kwid2 = new RenaultKwid()
+	kwid2.tieneTanque(true)
+	var kwid3 = new RenaultKwid()
+	kwid3.tieneTanque(false)
+	trafic.motor(bataton)
+	trafic.interior(popular)
+	
+	cultura.agregarAFlota(cachito)
+	cultura.agregarAFlota(kwid1)
+	cultura.agregarAFlota(kwid2)
+	cultura.agregarAFlota(kwid3)
+	cultura.agregarAFlota(trafic)
+	
+	assert.equals(10700, cultura.pesoTotalFlota())
+	assert.that(not cultura.estaBienEquipada())
+	assert.equals(10, cultura.capacidadTotalEnColor(azul))
+	assert.equals(rojo, cultura.colorDelRodadoMasRapido())
+	assert.equals(5, cultura.capacidadFaltante())
+	assert.that(not cultura.esGrande())
+}
