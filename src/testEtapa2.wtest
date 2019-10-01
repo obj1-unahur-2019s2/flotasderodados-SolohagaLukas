@@ -1,0 +1,14 @@
+import pedidos.*
+import Rodados.*
+test "testX" {
+	var cachito = new ChevroletCorsa()
+	cachito.color(rojo)
+	var pedido = new Pedidos()
+	pedido.distanciaARecorrer(960)
+	pedido.tiempoMaximo(8)
+	assert.equals(120, pedido.velocidadRequerida())
+	pedido.cantidadPasajeros(4)
+	pedido.coloresIncompatibles(azul)
+	pedido.coloresIncompatibles(negro)
+	assert.that(pedido.satisfacePedido(cachito))
+}

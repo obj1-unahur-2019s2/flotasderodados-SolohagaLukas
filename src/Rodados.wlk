@@ -66,3 +66,4 @@ object blanco {}
 object verde {}
 object beige {}
 object rojo {}
+object negro {}
