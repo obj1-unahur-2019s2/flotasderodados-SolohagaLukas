@@ -1,18 +1,38 @@
 import Rodados.*
-class Pedidos {
-	var property distanciaARecorrer
+class Pedido {
+	const property distanciaARecorrer
 	var property tiempoMaximo
-	var property cantidadPasajeros
-	var property coloresIncompatibles = #{}
+	const property cantidadPasajeros
+	const property coloresIncompatibles 
 	
 	method velocidadRequerida() { return distanciaARecorrer / tiempoMaximo }
-	method satisfacePedido(auto) {
-		var velocidad = auto.velocidadMaxima() > self.velocidadRequerida() + 9 
-		var capacidad = auto.capacidad() >= self.cantidadPasajeros() 
-		
-		return velocidad and capacidad and not coloresIncompatibles.all{color => color != auto.color()}
+
+	method puedeSerSatisfecho(auto) {
+		return self.satisfaceVelocidad(auto) 
+			and self.satisfaceCapacidad(auto) 
+			and self.satisfaceColor(auto) 
 	}
-	method fafafa(auto) {
-			return coloresIncompatibles.filter{color => color== auto.color()}
-		}
+	
+	method satisfaceVelocidad(auto) = auto.velocidadMaxima() >= self.velocidadRequerida() + 10
+	
+	method satisfaceCapacidad(auto) {
+		return auto.capacidad() >= cantidadPasajeros
+	}
+	
+	method satisfaceColor(auto) {
+//		return not coloresIncompatibles.any { c => c == auto.color() }
+		return not self.esColorIncompatible(auto.color())
+	}
+	
+	method esColorIncompatible(color) {
+		return coloresIncompatibles.contains(color)
+	}
+	
+	method acelerar() {
+		tiempoMaximo -= 1
+	}
+	
+	method relajar() {
+		tiempoMaximo += 1
+	}
 }
